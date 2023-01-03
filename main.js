@@ -5,6 +5,22 @@ const FULL_HEART = '♥'
 // Your JavaScript code goes here!
 
 
+document.querySelector('.heart').addEventListener('click', () => {
+  mimicServerCall()
+    .then(() => {
+      // handle success response
+      document.querySelector('.heart').classList.add('activated-heart');
+    })
+    .catch(() => {
+      // handle failure response
+      const errorModal = document.querySelector('.error-modal');
+      errorModal.querySelector('.error-message').innerHTML = 'Server error';
+      errorModal.classList.remove('hidden');
+      setTimeout(() => {
+        errorModal.classList.add('hidden');
+      }, 3000);
+    });
+});
 
 
 //------------------------------------------------------------------------------
